@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "fullName": "Labas Labas",
+      "email": "mail@email.com",
+      "address": {
+        "city": "Vilnius",
+        "street": "Gedimino pr.",
+        "houseNr": "9",
+        "zip": "0321"
+      }
+    }
+  ]
+}
