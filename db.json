@@ -5,22 +5,22 @@
       "email": "mail@email.com",
       "address": {
         "city": "Oslo",
-        "street": "14",
-        "houseNr": "Greverud",
+        "street": "",
+        "houseNr": "",
         "zip": "1415"
       },
-      "id": 2
+      "id": 1
     },
     {
-      "id": 3,
-      "fullName": "Labas Labas 3",
-      "email": "mail@email.com",
+      "fullName": "Minde Pinde",
+      "email": "mail1@email.com",
       "address": {
-        "city": "Kaunas",
-        "street": "Laisves al.",
-        "houseNr": "9",
-        "zip": "0321"
-      }
+        "city": "Vilnius",
+        "street": "",
+        "houseNr": "",
+        "zip": "1234"
+      },
+      "id": 2
     }
   ]
 }

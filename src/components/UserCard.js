@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-
-import EditUserModal from './EditUserModal'
 
 const useStyles = makeStyles({
 	root: {
@@ -26,9 +24,9 @@ const useStyles = makeStyles({
 	},
 })
 
-export default function UserCard(userData, { handelDeleteBtnClick }) {
+export default function UserCard(userData) {
 	const classes = useStyles()
-	console.log('Prop userData is user card', userData)
+
 	const { fullName, email, address } = userData.userData
 
 	return (
@@ -56,14 +54,19 @@ export default function UserCard(userData, { handelDeleteBtnClick }) {
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<EditUserModal userData={userData} />
-
 					<Button
 						variant='outlined'
 						color='primary'
-						onClick={handelDeleteBtnClick}
+						onClick={userData.handelDeleteBtnClick}
 					>
 						Delete
+					</Button>
+					<Button
+						variant='outlined'
+						color='primary'
+						onClick={userData.handelEditBtnClick}
+					>
+						Edit
 					</Button>
 				</CardActions>
 			</Card>
