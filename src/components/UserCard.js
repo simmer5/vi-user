@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+
+import EditUserModal from './EditUserModal'
 
 const useStyles = makeStyles({
 	root: {
@@ -24,43 +26,47 @@ const useStyles = makeStyles({
 	},
 })
 
-export default function UserCard({
-	fullName = 'Name is not provided',
-	email = 'Email is not provided',
-	city = 'City is not provided',
-	street = 'Street is not provided',
-	houseNr = 'House number is not provided',
-	zip = 'Zip code is not provided',
-}) {
+export default function UserCard(userData, { handelDeleteBtnClick }) {
 	const classes = useStyles()
-	const bull = <span className={classes.bullet}>•</span>
+	console.log('Prop userData is user card', userData)
+	const { fullName, email, address } = userData.userData
 
 	return (
-		<Card className={classes.root}>
-			<CardContent>
-				<Typography variant='h5' component='h2'>
-					{fullName}
-				</Typography>
+		<>
+			<Card className={classes.root}>
+				<CardContent>
+					<Typography variant='h5' component='h2'>
+						{fullName}
+					</Typography>
 
-				<Typography variant='body2' component='p'>
-					{email}
-				</Typography>
-				<Typography
-					className={classes.title}
-					color='textSecondary'
-					gutterBottom
-				>
-					Address
-				</Typography>
-				<Typography variant='body2' component='p'>
-					{street} {houseNr}
-					<br />
-					{city} {zip}
-				</Typography>
-			</CardContent>
-			<CardActions>
-				<Button size='small'>Learn More</Button>
-			</CardActions>
-		</Card>
+					<Typography variant='body2' component='p'>
+						{email}
+					</Typography>
+					<Typography
+						className={classes.title}
+						color='textSecondary'
+						gutterBottom
+					>
+						Address
+					</Typography>
+					<Typography variant='body2' component='p'>
+						{address.street} {address.houseNr}
+						<br />
+						{address.city} {address.zip}
+					</Typography>
+				</CardContent>
+				<CardActions>
+					<EditUserModal userData={userData} />
+
+					<Button
+						variant='outlined'
+						color='primary'
+						onClick={handelDeleteBtnClick}
+					>
+						Delete
+					</Button>
+				</CardActions>
+			</Card>
+		</>
 	)
 }

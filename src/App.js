@@ -1,13 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
 import userService from './services/users'
 
-import AddUserForm from './components/AddUserForm'
 import UserCard from './components/UserCard'
 
 function App() {
@@ -19,50 +17,36 @@ function App() {
 		})
 	}, [])
 
-	return (
-		<Box component='div'>
-			<Container maxWidth='lg'>
-				<Grid container spacing={1}>
-					<Paper
-						variant='outlined'
-						style={{ width: '100%', margin: 10, padding: 10 }}
-					>
-						<Grid item xs={12} sm={12} md={6} lg={6}>
-							<AddUserForm />
-						</Grid>
-					</Paper>
-					<Grid container spacing={4}>
-						{users.map(user => (
-							<>
-								<Grid item xs={12} sm={6} md={4} lg={3}>
-									<UserCard
-										fullName={user.fullName}
-										email={user.email}
-										city={user.adrress}
-										street={user.street}
-										houseNr={user.houseNr}
-										zip={user.zip}
-									/>
-								</Grid>
-							</>
-						))}
+	const handelDeleteBtnClick = id => {
+		console.log('Klikas veikia', id)
+		if (window.confirm('Do you realy want to delete?')) {
+			userService.deleteUser(id).then(() => {
+				setUsers(users.filter(user => user.id !== id))
+			})
+		}
+	}
 
-						{/* <Grid item xs={12} sm={6} md={4} lg={3}>
-							<UserCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4} lg={3}>
-							<UserCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4} lg={3}>
-							<UserCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4} lg={3}>
-							<UserCard />
-						</Grid> */}
+	return (
+		<>
+			{/* <Box component='div'>
+				<EditUserModal />
+			</Box> */}
+
+			<Box component='div'>
+				<Container maxWidth='lg'>
+					<Grid container spacing={4}>
+						{users.map((user, idx) => (
+							<Grid key={idx} item xs={12} sm={6} md={4} lg={4}>
+								<UserCard
+									userData={user}
+									handelDeleteBtnClick={() => handelDeleteBtnClick(user.id)}
+								/>
+							</Grid>
+						))}
 					</Grid>
-				</Grid>
-			</Container>
-		</Box>
+				</Container>
+			</Box>
+		</>
 	)
 }
 

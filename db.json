@@ -1,11 +1,23 @@
 {
   "users": [
     {
-      "fullName": "Labas Labas",
+      "fullName": "Minde",
       "email": "mail@email.com",
       "address": {
-        "city": "Vilnius",
-        "street": "Gedimino pr.",
+        "city": "Oslo",
+        "street": "14",
+        "houseNr": "Greverud",
+        "zip": "1415"
+      },
+      "id": 2
+    },
+    {
+      "id": 3,
+      "fullName": "Labas Labas 3",
+      "email": "mail@email.com",
+      "address": {
+        "city": "Kaunas",
+        "street": "Laisves al.",
         "houseNr": "9",
         "zip": "0321"
       }
