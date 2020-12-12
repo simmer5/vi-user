@@ -27,7 +27,7 @@ const EditUserModal = ({
 		<>
 			<Dialog
 				open={openModal}
-				onClose={openModal}
+				// onClose={openModal}
 				aria-labelledby='form-dialog-title'
 			>
 				<DialogTitle id='form-dialog-title'>Update User</DialogTitle>
@@ -103,7 +103,7 @@ const EditUserModal = ({
 						Cancel
 					</Button>
 					<Button onClick={onChangeSave} color='primary'>
-						Save
+						Save Changes
 					</Button>
 				</DialogActions>
 			</Dialog>

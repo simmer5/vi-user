@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
 import Grid from '@material-ui/core/Grid'
-
+import Button from '@material-ui/core/Button'
 import userService from '../services/users'
 
 import UserCard from './UserCard'
 import EditUserModal from './EditUserModal'
+import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
 	const [users, setUsers] = useState([])
 	const [openEditModal, setOpenEditModal] = useState(false)
+	const [openAddUserModal, setOpenAddUserModal] = useState(false)
 	const [userId, setUserId] = useState('')
 	// === EDIT MODAL STATE =====
 	const [updatedFullName, setUpdatedFullName] = useState('')
@@ -39,7 +41,7 @@ const VismaUsers = () => {
 		setUserId(id)
 		setOpenEditModal(true)
 	}
-
+	// ======== EDIT USER ===============
 	const onChangeSave = userId => {
 		const newUpdatedUser = {
 			fullName: updatedFullName,
@@ -61,11 +63,50 @@ const VismaUsers = () => {
 				alert('Error Alert!', error)
 			})
 		setOpenEditModal(false)
-		alert('User updated.', newUpdatedUser)
+		alert('User updated.')
+	}
+	// ================ SAVE NEW USER ==============
+	const onNewUserSave = () => {
+		const newUser = {
+			fullName: updatedFullName,
+			email: updatedEmail,
+			address: {
+				city: updatedCity,
+				street: updatedStreet,
+				houseNr: updatedHouseNr,
+				zip: updatedZip,
+			},
+		}
+
+		userService
+			.create(newUser)
+			.then(returnedUser => {
+				setUsers(users.concat(returnedUser))
+			})
+			.catch(error => {
+				alert('Error Alert!', error)
+			})
+
+		alert('User updated.')
+		setOpenAddUserModal(false)
 	}
 
 	return (
 		<>
+			<Grid container spacing={2} justify='flex-end'>
+				<Grid item>
+					<Button
+						onClick={() => {
+							setOpenAddUserModal(true)
+						}}
+						style={{ margin: '1rem' }}
+						variant='contained'
+						color='primary'
+					>
+						Add New User
+					</Button>
+				</Grid>
+			</Grid>
 			<Grid container spacing={4}>
 				{users.map((user, idx) => (
 					<Grid key={idx} item xs={12} sm={6} md={4} lg={4}>
@@ -78,7 +119,6 @@ const VismaUsers = () => {
 				))}
 			</Grid>
 			<EditUserModal
-				// userId={userId}
 				openModal={openEditModal}
 				handelCloseEditModal={() => {
 					setUserId('')
@@ -91,6 +131,17 @@ const VismaUsers = () => {
 				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
 				onZipChange={e => setUpdatedZip(e.target.value)}
 				onChangeSave={() => onChangeSave(userId)}
+			/>
+			<AddUserModal
+				openAddUserModal={openAddUserModal}
+				handelCloseAddUserModal={() => setOpenAddUserModal(false)}
+				onFullNameChange={e => setUpdatedFullName(e.target.value)}
+				onEmailChange={e => setUpdatedEmail(e.target.value)}
+				onCityChange={e => setUpdatedCity(e.target.value)}
+				onStreetChange={e => setUpdatedStreet(e.target.value)}
+				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
+				onZipChange={e => setUpdatedZip(e.target.value)}
+				onNewUserSave={onNewUserSave}
 			/>
 		</>
 	)

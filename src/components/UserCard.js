@@ -53,10 +53,10 @@ export default function UserCard(userData) {
 						{address.city} {address.zip}
 					</Typography>
 				</CardContent>
-				<CardActions>
+				<CardActions style={{ justifyContent: 'flex-end' }}>
 					<Button
 						variant='outlined'
-						color='primary'
+						color='secondary'
 						onClick={userData.handelDeleteBtnClick}
 					>
 						Delete
