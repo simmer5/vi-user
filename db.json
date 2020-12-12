@@ -12,37 +12,26 @@
       "id": 1
     },
     {
-      "fullName": "Minde Pinde",
-      "email": "mail2@email.com",
+      "fullName": "Pinde",
+      "email": "2@email.com",
       "address": {
-        "city": "Vilnius",
-        "street": "15",
+        "city": "Pumpenai",
+        "street": "111",
         "houseNr": "Gedimino pr.",
-        "zip": "123"
+        "zip": "1234"
       },
       "id": 2
     },
     {
-      "fullName": " Pinde",
-      "email": "mail3@email.com",
+      "fullName": "Jon",
+      "email": "3333@email.lt",
       "address": {
-        "city": "Vilnius",
-        "street": "515",
-        "houseNr": "Gedimino pr.",
-        "zip": "123"
+        "city": "Klaipeda",
+        "street": "11",
+        "houseNr": "H.Manto g.",
+        "zip": "9090"
       },
       "id": 3
-    },
-    {
-      "fullName": "Minde Pinde",
-      "email": "4@email.com",
-      "address": {
-        "city": "Vilnius",
-        "street": "15",
-        "houseNr": "Gedimino pr.",
-        "zip": "14"
-      },
-      "id": 4
     }
   ]
 }

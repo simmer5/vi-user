@@ -61,7 +61,7 @@ const VismaUsers = () => {
 				alert('Error Alert!', error)
 			})
 		setOpenEditModal(false)
-		console.log('User Updated', newUpdatedUser)
+		alert('User updated.', newUpdatedUser)
 	}
 
 	return (
