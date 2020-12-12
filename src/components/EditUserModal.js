@@ -25,87 +25,85 @@ const EditUserModal = ({
 }) => {
 	return (
 		<>
-			<Dialog
-				open={openModal}
-				// onClose={openModal}
-				aria-labelledby='form-dialog-title'
-			>
+			<Dialog open={openModal} aria-labelledby='form-dialog-title'>
 				<DialogTitle id='form-dialog-title'>Update User</DialogTitle>
-				<DialogContent>
-					<TextField
-						name='fullName'
-						required
-						margin='dense'
-						label='Full name'
-						type='text'
-						fullWidth
-						value={updatedFullName}
-						onChange={onFullNameChange}
-					/>
-					<TextField
-						name='email'
-						required
-						margin='dense'
-						id='email'
-						label='Email'
-						type='email'
-						fullWidth
-						value={updatedEmail}
-						onChange={onEmailChange}
-					/>
-					<TextField
-						name='city'
-						required
-						margin='dense'
-						id='city'
-						label='City'
-						type='text'
-						fullWidth
-						value={updatedCity}
-						onChange={onCityChange}
-					/>
-					<TextField
-						name='street'
-						required
-						margin='dense'
-						id='name'
-						label='Street'
-						type='text'
-						fullWidth
-						value={updatedHouseNr}
-						onChange={onHouseNrChange}
-					/>
-					<TextField
-						name='houseNr'
-						required
-						margin='dense'
-						id='houseNr'
-						label='House number'
-						type='text'
-						fullWidth
-						value={updatedStreet}
-						onChange={onStreetChange}
-					/>
-					<TextField
-						name='zip'
-						required
-						margin='dense'
-						id='zip'
-						label='Zip'
-						type='text'
-						fullWidth
-						value={updatedZip}
-						onChange={onZipChange}
-					/>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handelCloseEditModal} color='primary'>
-						Cancel
-					</Button>
-					<Button onClick={onChangeSave} color='primary'>
-						Save Changes
-					</Button>
-				</DialogActions>
+				<form onSubmit={onChangeSave}>
+					<DialogContent>
+						<TextField
+							name='fullName'
+							required
+							margin='dense'
+							label='Full name'
+							type='text'
+							fullWidth
+							value={updatedFullName}
+							onChange={onFullNameChange}
+						/>
+						<TextField
+							name='email'
+							required
+							margin='dense'
+							id='email'
+							label='Email'
+							type='email'
+							fullWidth
+							value={updatedEmail}
+							onChange={onEmailChange}
+						/>
+						<TextField
+							name='city'
+							required
+							margin='dense'
+							id='city'
+							label='City'
+							type='text'
+							fullWidth
+							value={updatedCity}
+							onChange={onCityChange}
+						/>
+						<TextField
+							name='street'
+							required
+							margin='dense'
+							id='name'
+							label='Street'
+							type='text'
+							fullWidth
+							value={updatedHouseNr}
+							onChange={onHouseNrChange}
+						/>
+						<TextField
+							name='houseNr'
+							required
+							margin='dense'
+							id='houseNr'
+							label='House number'
+							type='text'
+							fullWidth
+							value={updatedStreet}
+							onChange={onStreetChange}
+						/>
+						<TextField
+							name='zip'
+							required
+							margin='dense'
+							id='zip'
+							label='Zip'
+							type='text'
+							fullWidth
+							value={updatedZip}
+							onChange={onZipChange}
+						/>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={handelCloseEditModal} color='primary'>
+							Cancel
+						</Button>
+						<Button type='submit' color='primary'>
+							Save Changes
+						</Button>
+					</DialogActions>
+				</form>
 			</Dialog>
 		</>
 	)

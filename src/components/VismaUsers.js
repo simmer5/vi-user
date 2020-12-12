@@ -9,11 +9,13 @@ import EditUserModal from './EditUserModal'
 import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
+	const [disabled, setDisabled] = useState(true)
 	const [users, setUsers] = useState([])
 	const [openEditModal, setOpenEditModal] = useState(false)
 	const [openAddUserModal, setOpenAddUserModal] = useState(false)
 	const [userId, setUserId] = useState('')
 	// === EDIT MODAL STATE =====
+
 	const [updatedFullName, setUpdatedFullName] = useState('')
 	const [updatedEmail, setUpdatedEmail] = useState('')
 	const [updatedCity, setUpdatedCity] = useState('')
@@ -87,7 +89,7 @@ const VismaUsers = () => {
 				alert('Error Alert!', error)
 			})
 
-		alert('User updated.')
+		alert('New User Created.')
 		setOpenAddUserModal(false)
 	}
 
@@ -142,6 +144,7 @@ const VismaUsers = () => {
 				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
 				onZipChange={e => setUpdatedZip(e.target.value)}
 				onNewUserSave={onNewUserSave}
+				disabled={false}
 			/>
 		</>
 	)

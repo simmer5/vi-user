@@ -12,17 +12,6 @@
       "id": 1
     },
     {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 2
-    },
-    {
       "fullName": "Minde",
       "email": "mail1@email.com",
       "address": {
@@ -34,13 +23,13 @@
       "id": 3
     },
     {
-      "fullName": "Pinde",
-      "email": "2@email.com",
+      "fullName": "Minde Pinde",
+      "email": "mail1@email.com",
       "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
+        "city": "Vilnius",
+        "street": "Gedimino pr.",
+        "houseNr": "s",
+        "zip": ""
       },
       "id": 4
     },
@@ -274,6 +263,17 @@
         "zip": "1"
       },
       "id": 25
+    },
+    {
+      "fullName": "Last User",
+      "email": "Mail@email.ge",
+      "address": {
+        "city": "Mars",
+        "street": "Mars av.",
+        "houseNr": "4",
+        "zip": "4545"
+      },
+      "id": 26
     }
   ]
 }
