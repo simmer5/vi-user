@@ -2,25 +2,47 @@
   "users": [
     {
       "fullName": "Minde",
-      "email": "mail@email.com",
+      "email": "mail1@email.com",
       "address": {
         "city": "Oslo",
-        "street": "",
-        "houseNr": "",
-        "zip": "1415"
+        "street": "12",
+        "houseNr": "Greverud",
+        "zip": "415"
       },
       "id": 1
     },
     {
       "fullName": "Minde Pinde",
-      "email": "mail1@email.com",
+      "email": "mail2@email.com",
       "address": {
         "city": "Vilnius",
-        "street": "",
-        "houseNr": "",
-        "zip": "1234"
+        "street": "15",
+        "houseNr": "Gedimino pr.",
+        "zip": "123"
       },
       "id": 2
+    },
+    {
+      "fullName": " Pinde",
+      "email": "mail3@email.com",
+      "address": {
+        "city": "Vilnius",
+        "street": "515",
+        "houseNr": "Gedimino pr.",
+        "zip": "123"
+      },
+      "id": 3
+    },
+    {
+      "fullName": "Minde Pinde",
+      "email": "4@email.com",
+      "address": {
+        "city": "Vilnius",
+        "street": "15",
+        "houseNr": "Gedimino pr.",
+        "zip": "14"
+      },
+      "id": 4
     }
   ]
 }

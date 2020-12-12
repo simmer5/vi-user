@@ -61,6 +61,7 @@ const VismaUsers = () => {
 				alert('Error Alert!', error)
 			})
 		setOpenEditModal(false)
+		console.log('User Updated', newUpdatedUser)
 	}
 
 	return (
@@ -72,13 +73,12 @@ const VismaUsers = () => {
 							userData={user}
 							handelDeleteBtnClick={() => handelDeleteBtnClick(user.id)}
 							handelEditBtnClick={() => handelOpenEditModal(user.id)}
-							onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
 						/>
 					</Grid>
 				))}
 			</Grid>
 			<EditUserModal
-				userId={userId}
+				// userId={userId}
 				openModal={openEditModal}
 				handelCloseEditModal={() => {
 					setUserId('')
@@ -88,6 +88,7 @@ const VismaUsers = () => {
 				onEmailChange={e => setUpdatedEmail(e.target.value)}
 				onCityChange={e => setUpdatedCity(e.target.value)}
 				onStreetChange={e => setUpdatedStreet(e.target.value)}
+				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
 				onZipChange={e => setUpdatedZip(e.target.value)}
 				onChangeSave={() => onChangeSave(userId)}
 			/>
