@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-
+import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import userService from '../services/users'
+import geoService from '../services/geo'
 
 import UserCard from './UserCard'
 import EditUserModal from './EditUserModal'
 import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
-	const [disabled, setDisabled] = useState(true)
 	const [users, setUsers] = useState([])
 	const [openEditModal, setOpenEditModal] = useState(false)
 	const [openAddUserModal, setOpenAddUserModal] = useState(false)
@@ -23,11 +23,26 @@ const VismaUsers = () => {
 	const [updatedStreet, setUpdatedStreet] = useState('')
 	const [updatedZip, setUpdatedZip] = useState('')
 
-	useEffect(() => {
-		userService.getAll().then(initialContacts => {
-			setUsers(initialContacts)
-		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(async () => {
+		const initialUsers = await userService.getAll()
+		setUsers(initialUsers)
 	}, [])
+
+	useEffect(() => {
+		// const params = {
+		// 	access_key: 'API KEY',
+		// 	query: 'Greverudveien 14',
+		// }
+		// axios
+		// 	.get('http://api.positionstack.com/v1/forward', { params })
+		// 	.then(response => {
+		// 		console.log(response.data)
+		// 	})
+		// 	.catch(error => {
+		// 		console.log('Kazkas neveikia', error)
+		// 	})
+	})
 
 	const handelDeleteBtnClick = id => {
 		console.log('Delete Klikas veikia', id)
