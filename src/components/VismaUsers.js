@@ -11,7 +11,7 @@ import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
 	const [users, setUsers] = useState([])
-	const [address, setAddress] = useState([])
+
 	const [updatedUser, setUpdatedUser] = useState({
 		fullName: '',
 		email: '',
@@ -64,8 +64,40 @@ const VismaUsers = () => {
 		alert('User updated.')
 	}
 	// ================ SAVE NEW USER ==============
-	const onNewUserSave = e => {
-		e.preventDefault()
+
+	const latLng = (query, updatedUser, callback) => {
+		getGeoData(query).then(returnedData => {
+			console.log('CIA RETURNED DATA', returnedData.data[0])
+			const filteredData = returnedData.data.filter(
+				data =>
+					data.region.toLowerCase() ===
+						updatedUser.address.city.toLowerCase() &&
+					data.number === updatedUser.address.houseNr
+			)
+			console.log('PO FILTRO', filteredData[0])
+			setUpdatedUser({
+				...updatedUser,
+				lat: filteredData[0].latitude,
+				lng: filteredData[0].longitude,
+			})
+
+			const newUser = {
+				fullName: updatedUser.fullName,
+				email: updatedUser.email,
+				lat: filteredData[0].latitude,
+				lng: filteredData[0].longitude,
+				address: {
+					city: updatedUser.address.city,
+					street: updatedUser.address.street,
+					houseNr: updatedUser.address.houseNr,
+					zip: updatedUser.address.zip,
+				},
+			}
+			callback(newUser)
+		})
+	}
+
+	const saveUser = updatedUser => {
 		userService
 			.create(updatedUser)
 			.then(returnedUser => {
@@ -77,8 +109,53 @@ const VismaUsers = () => {
 			})
 	}
 
+	const onNewUserSave = e => {
+		e.preventDefault()
+		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
+		latLng(query, updatedUser, saveUser)
+
+		// getGeoData(query).then(returnedData => {
+		// 	console.log('CIA RETURNED DATA', returnedData.data[0])
+		// 	const filteredData = returnedData.data.filter(
+		// 		data =>
+		// 			data.region.toLowerCase() ===
+		// 				updatedUser.address.city.toLowerCase() &&
+		// 			data.number === updatedUser.address.houseNr
+		// 	)
+		// 	console.log('PO FILTRO', filteredData[0])
+
+		// 	setUpdatedUser({
+		// 		...updatedUser,
+		// 		lat: filteredData[0].latitude,
+		// 		lng: filteredData[0].longitude,
+		// 	})
+		// })
+
+		// .then(data => {
+		// 	console.log('DATA pries pat userio updata', data)
+		// 	setUpdatedUser({
+		// 		...updatedUser,
+		// 		lat: data.latitude,
+		// 		lng: data.longitude,
+		// 	})
+		// })
+
+		// userService
+		// 	.create(updatedUser)
+		// 	.then(returnedUser => {
+		// 		setUsers(users.concat(returnedUser))
+		// 	})
+		// 	.then(setOpenAddUserModal(false))
+		// 	.catch(error => {
+		// 		alert('Error On New User Save!', error)
+		// 	})
+		//console.log('UPDATED Userio duomenys po visko: ', updatedUser)
+	}
+
 	return (
 		<>
+			{JSON.stringify(updatedUser)}
+
 			<Grid container spacing={2} justify='flex-end'>
 				<Grid item>
 					<Button

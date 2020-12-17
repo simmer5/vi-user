@@ -1,259 +1,43 @@
 {
   "users": [
     {
-      "fullName": "M16",
-      "email": "m1@m1.lt",
-      "address": {
-        "city": "Vln",
-        "street": "16",
-        "houseNr": "Street",
-        "zip": "1234"
-      },
-      "id": 1
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 3
-    },
-    {
-      "fullName": "Minde Pinde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Vilnius",
-        "street": "Gedimino pr.",
-        "houseNr": "s",
-        "zip": ""
-      },
-      "id": 4
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 5
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 6
-    },
-    {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 7
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 8
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 9
-    },
-    {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 10
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 11
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 12
-    },
-    {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 13
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 14
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 15
-    },
-    {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 16
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 17
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 18
-    },
-    {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 19
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 20
-    },
-    {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
-      "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
-      },
-      "id": 21
-    },
-    {
-      "fullName": "Geko",
-      "email": "Mail@email.ge",
-      "address": {
-        "city": "Mars",
-        "street": "Mars av.",
-        "houseNr": "11",
-        "zip": "4545"
-      },
-      "id": 24
-    },
-    {
-      "fullName": "Lolo",
-      "email": "lolo@mail.lo",
-      "address": {
-        "city": "Arctic",
-        "street": "Iceberg",
-        "houseNr": "1",
-        "zip": "1"
-      },
-      "id": 25
-    },
-    {
       "fullName": "Visma Kaunas",
       "email": "m1@m1.lt",
-      "lat": "",
-      "lng": "",
+      "lat": 54.890123,
+      "lng": 23.926513,
       "address": {
         "city": "Kaunas",
         "street": "Vytauto pr.",
         "houseNr": "32",
         "zip": "44328"
       },
-      "id": 26
+      "id": 1
+    },
+    {
+      "fullName": "Visma Vilnius",
+      "email": "m1@m1.lt",
+      "lat": 54.697418,
+      "lng": 25.278698,
+      "address": {
+        "city": "Vilnius",
+        "street": "Giedraičių g",
+        "houseNr": "3",
+        "zip": "09307"
+      },
+      "id": 2
+    },
+    {
+      "fullName": "Seimas",
+      "email": "seimas@seimas.lt",
+      "lat": 54.690579,
+      "lng": 25.261993,
+      "address": {
+        "city": "Vilnius",
+        "street": "Gedimino pr",
+        "houseNr": "53",
+        "zip": "01109"
+      },
+      "id": 3
     }
   ]
 }
