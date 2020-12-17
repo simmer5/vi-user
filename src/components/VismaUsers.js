@@ -64,33 +64,16 @@ const VismaUsers = () => {
 		alert('User updated.')
 	}
 	// ================ SAVE NEW USER ==============
-	const onNewUserSave = async e => {
+	const onNewUserSave = e => {
 		e.preventDefault()
-		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
-
-		const returnedData = await getGeoData(query)
-
-		const filteredObj = await returnedData.data.filter(
-			data =>
-				data.region.toLowerCase() === updatedUser.address.city.toLowerCase() &&
-				data.number === updatedUser.address.houseNr
-		)
-		setUpdatedUser({
-			...updatedUser,
-			lat: filteredObj[0].latitude,
-			lng: filteredObj[0].longitude,
-		})
-
 		userService
 			.create(updatedUser)
-			.then(console.log('CIA UPDATED USERIS', updatedUser))
 			.then(returnedUser => {
 				setUsers(users.concat(returnedUser))
 			})
 			.then(setOpenAddUserModal(false))
-			.then(alert('New User Created.'))
 			.catch(error => {
-				alert('Error Alert!', error)
+				alert('Error On New User Save!', error)
 			})
 	}
 
