@@ -3,7 +3,7 @@ import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import userService from '../services/users'
-import geoService from '../services/geo'
+import { getGeoData } from '../services/geo'
 
 import UserCard from './UserCard'
 import EditUserModal from './EditUserModal'
@@ -11,17 +11,22 @@ import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
 	const [users, setUsers] = useState([])
+	const [address, setAddress] = useState([])
+	const [updatedUser, setUpdatedUser] = useState({
+		fullName: '',
+		email: '',
+		lat: '',
+		lng: '',
+		address: {
+			city: '',
+			street: '',
+			houseNr: '',
+			zip: '',
+		},
+	})
 	const [openEditModal, setOpenEditModal] = useState(false)
 	const [openAddUserModal, setOpenAddUserModal] = useState(false)
 	const [userId, setUserId] = useState('')
-	// === EDIT MODAL STATE =====
-
-	const [updatedFullName, setUpdatedFullName] = useState('')
-	const [updatedEmail, setUpdatedEmail] = useState('')
-	const [updatedCity, setUpdatedCity] = useState('')
-	const [updatedHouseNr, setUpdatedHouseNr] = useState('')
-	const [updatedStreet, setUpdatedStreet] = useState('')
-	const [updatedZip, setUpdatedZip] = useState('')
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(async () => {
@@ -29,23 +34,7 @@ const VismaUsers = () => {
 		setUsers(initialUsers)
 	}, [])
 
-	useEffect(() => {
-		// const params = {
-		// 	access_key: 'API KEY',
-		// 	query: 'Greverudveien 14',
-		// }
-		// axios
-		// 	.get('http://api.positionstack.com/v1/forward', { params })
-		// 	.then(response => {
-		// 		console.log(response.data)
-		// 	})
-		// 	.catch(error => {
-		// 		console.log('Kazkas neveikia', error)
-		// 	})
-	})
-
 	const handelDeleteBtnClick = id => {
-		console.log('Delete Klikas veikia', id)
 		if (window.confirm('Do you realy want to delete user?')) {
 			userService.deleteUser(id).then(() => {
 				setUsers(users.filter(user => user.id !== id))
@@ -59,20 +48,12 @@ const VismaUsers = () => {
 		setOpenEditModal(true)
 	}
 	// ======== EDIT USER ===============
-	const onChangeSave = userId => {
-		const newUpdatedUser = {
-			fullName: updatedFullName,
-			email: updatedEmail,
-			address: {
-				city: updatedCity,
-				street: updatedStreet,
-				houseNr: updatedHouseNr,
-				zip: updatedZip,
-			},
-		}
-		console.log('newUpdatedUser', newUpdatedUser)
+	const onChangeSave = (e, userId) => {
+		e.preventDefault()
+
+		console.log('newUpdatedUser', updatedUser)
 		userService
-			.update(userId, newUpdatedUser)
+			.update(userId, updatedUser)
 			.then(returnedUser => {
 				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
 			})
@@ -83,29 +64,34 @@ const VismaUsers = () => {
 		alert('User updated.')
 	}
 	// ================ SAVE NEW USER ==============
-	const onNewUserSave = () => {
-		const newUser = {
-			fullName: updatedFullName,
-			email: updatedEmail,
-			address: {
-				city: updatedCity,
-				street: updatedStreet,
-				houseNr: updatedHouseNr,
-				zip: updatedZip,
-			},
-		}
+	const onNewUserSave = async e => {
+		e.preventDefault()
+		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
+
+		const returnedData = await getGeoData(query)
+
+		const filteredObj = await returnedData.data.filter(
+			data =>
+				data.region.toLowerCase() === updatedUser.address.city.toLowerCase() &&
+				data.number === updatedUser.address.houseNr
+		)
+		setUpdatedUser({
+			...updatedUser,
+			lat: filteredObj[0].latitude,
+			lng: filteredObj[0].longitude,
+		})
 
 		userService
-			.create(newUser)
+			.create(updatedUser)
+			.then(console.log('CIA UPDATED USERIS', updatedUser))
 			.then(returnedUser => {
 				setUsers(users.concat(returnedUser))
 			})
+			.then(setOpenAddUserModal(false))
+			.then(alert('New User Created.'))
 			.catch(error => {
 				alert('Error Alert!', error)
 			})
-
-		alert('New User Created.')
-		setOpenAddUserModal(false)
 	}
 
 	return (
@@ -141,24 +127,72 @@ const VismaUsers = () => {
 					setUserId('')
 					setOpenEditModal(false)
 				}}
-				onFullNameChange={e => setUpdatedFullName(e.target.value)}
-				onEmailChange={e => setUpdatedEmail(e.target.value)}
-				onCityChange={e => setUpdatedCity(e.target.value)}
-				onStreetChange={e => setUpdatedStreet(e.target.value)}
-				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
-				onZipChange={e => setUpdatedZip(e.target.value)}
-				onChangeSave={() => onChangeSave(userId)}
+				onFullNameChange={e =>
+					setUpdatedUser({ ...updatedUser, fullName: e.target.value })
+				}
+				onEmailChange={e =>
+					setUpdatedUser({ ...updatedUser, email: e.target.value })
+				}
+				onCityChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, city: e.target.value },
+					})
+				}
+				onStreetChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, street: e.target.value },
+					})
+				}
+				onHouseNrChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, houseNr: e.target.value },
+					})
+				}
+				onZipChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, zip: e.target.value },
+					})
+				}
+				onChangeSave={e => onChangeSave(e, userId)}
 			/>
 			<AddUserModal
 				openAddUserModal={openAddUserModal}
 				handelCloseAddUserModal={() => setOpenAddUserModal(false)}
-				onFullNameChange={e => setUpdatedFullName(e.target.value)}
-				onEmailChange={e => setUpdatedEmail(e.target.value)}
-				onCityChange={e => setUpdatedCity(e.target.value)}
-				onStreetChange={e => setUpdatedStreet(e.target.value)}
-				onHouseNrChange={e => setUpdatedHouseNr(e.target.value)}
-				onZipChange={e => setUpdatedZip(e.target.value)}
-				onNewUserSave={onNewUserSave}
+				onFullNameChange={e =>
+					setUpdatedUser({ ...updatedUser, fullName: e.target.value })
+				}
+				onEmailChange={e =>
+					setUpdatedUser({ ...updatedUser, email: e.target.value })
+				}
+				onCityChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, city: e.target.value },
+					})
+				}
+				onStreetChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, street: e.target.value },
+					})
+				}
+				onHouseNrChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, houseNr: e.target.value },
+					})
+				}
+				onZipChange={e =>
+					setUpdatedUser({
+						...updatedUser,
+						address: { ...updatedUser.address, zip: e.target.value },
+					})
+				}
+				onNewUserSave={e => onNewUserSave(e)}
 				disabled={false}
 			/>
 		</>

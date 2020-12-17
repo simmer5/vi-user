@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "fullName": "Minde",
-      "email": "mail1@email.com",
+      "fullName": "M16",
+      "email": "m1@m1.lt",
       "address": {
-        "city": "Oslo",
-        "street": "12",
-        "houseNr": "Greverud",
-        "zip": "415"
+        "city": "Vln",
+        "street": "16",
+        "houseNr": "Street",
+        "zip": "1234"
       },
       "id": 1
     },
@@ -221,28 +221,6 @@
       "id": 21
     },
     {
-      "fullName": "Pinde",
-      "email": "2@email.com",
-      "address": {
-        "city": "Pumpenai",
-        "street": "111",
-        "houseNr": "Gedimino pr.",
-        "zip": "1234"
-      },
-      "id": 22
-    },
-    {
-      "fullName": "Jon",
-      "email": "3333@email.lt",
-      "address": {
-        "city": "Klaipeda",
-        "street": "11",
-        "houseNr": "H.Manto g.",
-        "zip": "9090"
-      },
-      "id": 23
-    },
-    {
       "fullName": "Geko",
       "email": "Mail@email.ge",
       "address": {
@@ -265,15 +243,20 @@
       "id": 25
     },
     {
-      "fullName": "Last User",
-      "email": "Mail@email.ge",
+      "fullName": "Visma Kaunas",
+      "email": "m1@m1.lt",
+      "lat": "",
+      "lng": "",
       "address": {
-        "city": "Mars",
-        "street": "Mars av.",
-        "houseNr": "4",
-        "zip": "4545"
+        "city": "Kaunas",
+        "street": "Vytauto pr.",
+        "houseNr": "32",
+        "zip": "44328"
       },
       "id": 26
+    },
+    {
+      "id": 27
     }
   ]
 }
