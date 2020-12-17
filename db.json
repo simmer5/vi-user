@@ -38,6 +38,45 @@
         "zip": "01109"
       },
       "id": 3
+    },
+    {
+      "fullName": "Gedimino 9",
+      "email": "g9@g9.lt",
+      "lat": 54.687226,
+      "lng": 25.281412,
+      "address": {
+        "city": "Vilnius",
+        "street": "Gedimino pr",
+        "houseNr": "9",
+        "zip": "12234"
+      },
+      "id": 4
+    },
+    {
+      "fullName": "Visma Klaipeda",
+      "email": "vikl@vikl.lt",
+      "lat": 55.667599,
+      "lng": 21.189751,
+      "address": {
+        "city": "Klaipeda",
+        "street": "Laukininkų g",
+        "houseNr": "5",
+        "zip": "95179"
+      },
+      "id": 5
+    },
+    {
+      "fullName": "Visma Norge",
+      "email": "vinor@vinor.no",
+      "lat": 59.921199,
+      "lng": 10.677897,
+      "address": {
+        "city": "Oslo",
+        "street": "Karenslyst allé",
+        "houseNr": "56",
+        "zip": "0277"
+      },
+      "id": 6
     }
   ]
 }

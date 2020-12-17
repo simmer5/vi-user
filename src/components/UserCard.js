@@ -5,16 +5,20 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import RoomIcon from '@material-ui/icons/Room'
 
 const useStyles = makeStyles({
 	root: {
 		minWidth: '20vw',
 		margin: '0.5rem',
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
+	content: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
+	icon: {
+		alignSelf: 'flex-end',
+		position: 'absolute',
 	},
 	title: {
 		marginTop: '1rem',
@@ -27,12 +31,16 @@ const useStyles = makeStyles({
 export default function UserCard(userData) {
 	const classes = useStyles()
 
-	const { fullName, email, address } = userData.userData
-
+	const { fullName, email, address, lat, lng } = userData.userData
+	const baseMap = `https://www.openstreetmap.org/export/embed.html?bbox=25.38333,54.73333,25.319481,55.321175&layer=mapnik&marker=${lat},${lng}`
 	return (
 		<>
 			<Card className={classes.root}>
-				<CardContent>
+				<CardContent className={classes.content}>
+					<a className={classes.icon} href={baseMap} target='_tab'>
+						<RoomIcon color='primary' fontSize='large' />
+					</a>
+
 					<Typography variant='h5' component='h2'>
 						{fullName}
 					</Typography>
