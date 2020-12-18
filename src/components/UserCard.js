@@ -37,7 +37,7 @@ export default function UserCard(userData) {
 		<>
 			<Card className={classes.root}>
 				<CardContent className={classes.content}>
-					<a className={classes.icon} href={baseMap} target='_tab'>
+					<a className={classes.icon} href={baseMap} target='blank'>
 						<RoomIcon color='primary' fontSize='large' />
 					</a>
 

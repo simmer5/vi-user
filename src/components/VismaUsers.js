@@ -33,38 +33,7 @@ const VismaUsers = () => {
 		const initialUsers = await userService.getAll()
 		setUsers(initialUsers)
 	}, [])
-
-	const handelDeleteBtnClick = id => {
-		if (window.confirm('Do you realy want to delete user?')) {
-			userService.deleteUser(id).then(() => {
-				setUsers(users.filter(user => user.id !== id))
-			})
-		}
-	}
-
-	const handelOpenEditModal = id => {
-		console.log('Editmodal atsidaro ', id)
-		setUserId(id)
-		setOpenEditModal(true)
-	}
-	// ======== EDIT USER ===============
-	const onChangeSave = (e, userId) => {
-		e.preventDefault()
-
-		console.log('newUpdatedUser', updatedUser)
-		userService
-			.update(userId, updatedUser)
-			.then(returnedUser => {
-				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
-			})
-			.catch(error => {
-				alert('Error Alert!', error)
-			})
-		setOpenEditModal(false)
-		alert('User updated.')
-	}
-	// ================ SAVE NEW USER ==============
-
+	// =========== Lat Lng extractor ========================
 	const latLng = (query, updatedUser, callback) => {
 		getGeoData(query).then(returnedData => {
 			console.log('CIA RETURNED DATA', returnedData.data[0])
@@ -97,6 +66,22 @@ const VismaUsers = () => {
 		})
 	}
 
+	const handelDeleteBtnClick = id => {
+		if (window.confirm('Do you realy want to delete user?')) {
+			userService.deleteUser(id).then(() => {
+				setUsers(users.filter(user => user.id !== id))
+			})
+		}
+	}
+
+	const handelOpenEditModal = id => {
+		console.log('Editmodal atsidaro ', id)
+		setUserId(id)
+		setOpenEditModal(true)
+	}
+
+	// ================ SAVE NEW USER CALLBACK ==============
+
 	const saveUser = updatedUser => {
 		userService
 			.create(updatedUser)
@@ -108,48 +93,42 @@ const VismaUsers = () => {
 				alert('Error On New User Save!', error)
 			})
 	}
-
+	//=========== UPDATE EXISTING USER Callback=========
+	const updateUser = userId => {
+		userService
+			.update(userId, updatedUser)
+			.then(returnedUser => {
+				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
+			})
+			.catch(error => {
+				alert('Error Alert On User Edit!', error)
+			})
+		setOpenEditModal(false)
+		alert('User updated.')
+	}
+	//======== SAVE NEW USER ================
 	const onNewUserSave = e => {
 		e.preventDefault()
 		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
 		latLng(query, updatedUser, saveUser)
-
-		// getGeoData(query).then(returnedData => {
-		// 	console.log('CIA RETURNED DATA', returnedData.data[0])
-		// 	const filteredData = returnedData.data.filter(
-		// 		data =>
-		// 			data.region.toLowerCase() ===
-		// 				updatedUser.address.city.toLowerCase() &&
-		// 			data.number === updatedUser.address.houseNr
-		// 	)
-		// 	console.log('PO FILTRO', filteredData[0])
-
-		// 	setUpdatedUser({
-		// 		...updatedUser,
-		// 		lat: filteredData[0].latitude,
-		// 		lng: filteredData[0].longitude,
-		// 	})
-		// })
-
-		// .then(data => {
-		// 	console.log('DATA pries pat userio updata', data)
-		// 	setUpdatedUser({
-		// 		...updatedUser,
-		// 		lat: data.latitude,
-		// 		lng: data.longitude,
-		// 	})
-		// })
+	}
+	// ======== EDIT USER ===============
+	const onChangeSave = (e, userId) => {
+		e.preventDefault()
+		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
+		latLng(query, updatedUser, updateUser)
+		//console.log('newUpdatedUser', updatedUser)
 
 		// userService
-		// 	.create(updatedUser)
+		// 	.update(userId, updatedUser)
 		// 	.then(returnedUser => {
-		// 		setUsers(users.concat(returnedUser))
+		// 		setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
 		// 	})
-		// 	.then(setOpenAddUserModal(false))
 		// 	.catch(error => {
-		// 		alert('Error On New User Save!', error)
+		// 		alert('Error Alert On User Edit!', error)
 		// 	})
-		//console.log('UPDATED Userio duomenys po visko: ', updatedUser)
+		// setOpenEditModal(false)
+		// alert('User updated.')
 	}
 
 	return (
