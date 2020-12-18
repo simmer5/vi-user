@@ -94,7 +94,7 @@ const VismaUsers = () => {
 			})
 	}
 	//=========== UPDATE EXISTING USER Callback=========
-	const updateUser = userId => {
+	const updateUser = (userId, updatedUser) => {
 		userService
 			.update(userId, updatedUser)
 			.then(returnedUser => {
@@ -115,20 +115,20 @@ const VismaUsers = () => {
 	// ======== EDIT USER ===============
 	const onChangeSave = (e, userId) => {
 		e.preventDefault()
-		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
-		latLng(query, updatedUser, updateUser)
-		//console.log('newUpdatedUser', updatedUser)
+		// const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
+		//latLng(query, updatedUser, userId)
+		console.log('newUpdatedUser', updatedUser)
 
-		// userService
-		// 	.update(userId, updatedUser)
-		// 	.then(returnedUser => {
-		// 		setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
-		// 	})
-		// 	.catch(error => {
-		// 		alert('Error Alert On User Edit!', error)
-		// 	})
-		// setOpenEditModal(false)
-		// alert('User updated.')
+		userService
+			.update(userId, updatedUser)
+			.then(returnedUser => {
+				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
+			})
+			.catch(error => {
+				alert('Error Alert On User Edit!', error)
+			})
+		setOpenEditModal(false)
+		alert('User updated.')
 	}
 
 	return (

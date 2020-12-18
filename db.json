@@ -81,12 +81,12 @@
     {
       "fullName": "Mi St",
       "email": "mist@mist.lt",
-      "lat": 54.706957,
-      "lng": 25.29231,
+      "lat": "",
+      "lng": "",
       "address": {
         "city": "Vilnius",
-        "street": "Žygio g",
-        "houseNr": "6",
+        "street": "6",
+        "houseNr": "Žygio g",
         "zip": "91992"
       },
       "id": 7
