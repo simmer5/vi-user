@@ -90,6 +90,19 @@
         "zip": "01103"
       },
       "id": 8
+    },
+    {
+      "fullName": "VU",
+      "email": "mail@email.lt",
+      "lat": 54.682708,
+      "lng": 25.286672,
+      "address": {
+        "city": "Vilnius",
+        "street": "Universiteto g",
+        "houseNr": "3",
+        "zip": "01513"
+      },
+      "id": 9
     }
   ]
 }

@@ -1,14 +1,22 @@
 Master
 
-# Getting Started with Create React App
+# Single page customer management app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech
 
-## Available Scripts
+React.js (cra)
+Material UI
+json-server
+Positionstack API
 
-In the project directory, you can run:
+## Requirements
 
-### `yarn start`
+Positionstack API_KEY
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## App start
+
+### `npm install`
+
+### `npm start`
+
+### `npm run server`

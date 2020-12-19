@@ -35,14 +35,13 @@ const VismaUsers = () => {
 	// =========== Lat Lng extractor for new users ========================
 	const latLngForNewUser = (query, updatedUser, callback) => {
 		getGeoData(query).then(returnedData => {
-			console.log('CIA RETURNED DATA', returnedData.data[0])
 			const filteredData = returnedData.data.filter(
 				data =>
 					data.region.toLowerCase() ===
 						updatedUser.address.city.toLowerCase() &&
 					data.number === updatedUser.address.houseNr
 			)
-			console.log('PO FILTRO', filteredData[0])
+
 			setUpdatedUser({
 				...updatedUser,
 				lat: filteredData[0].latitude,
@@ -68,15 +67,13 @@ const VismaUsers = () => {
 	//============== Lat Lng extractor for updated users ==========
 	const latLngFofEditUser = (query, userId, callback) => {
 		getGeoData(query).then(returnedData => {
-			console.log('CIA RETURNED DATA', returnedData.data)
-			console.log('CIA UPDATED USER DATA', updatedUser)
 			const filteredData = returnedData.data.filter(
 				data =>
 					data.region.toLowerCase() ===
 						updatedUser.address.city.toLowerCase() &&
 					data.number.toLowerCase() == updatedUser.address.houseNr.toLowerCase()
 			)
-			console.log('DATA PO  FILTRO', filteredData)
+
 			const newUser = {
 				fullName: updatedUser.fullName,
 				email: updatedUser.email,
@@ -147,8 +144,6 @@ const VismaUsers = () => {
 
 	return (
 		<>
-			{JSON.stringify(updatedUser)}
-
 			<Grid container spacing={2} justify='flex-end'>
 				<Grid item>
 					<Button
