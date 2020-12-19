@@ -4,10 +4,7 @@ Master
 
 ## Tech
 
-React.js (cra)
-Material UI
-json-server
-Positionstack API
+React.js (cra), Material UI, json-server, Positionstack API,
 
 ## Requirements
 
