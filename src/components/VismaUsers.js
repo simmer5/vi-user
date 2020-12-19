@@ -10,6 +10,7 @@ import EditUserModal from './EditUserModal'
 import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
+	// ====== is callback brancho=====
 	const [users, setUsers] = useState([])
 
 	const [updatedUser, setUpdatedUser] = useState({
@@ -33,8 +34,8 @@ const VismaUsers = () => {
 		const initialUsers = await userService.getAll()
 		setUsers(initialUsers)
 	}, [])
-	// =========== Lat Lng extractor ========================
-	const latLng = (query, updatedUser, callback) => {
+	// =========== Lat Lng extractor for new users ========================
+	const latLngForNewUser = (query, updatedUser, callback) => {
 		getGeoData(query).then(returnedData => {
 			console.log('CIA RETURNED DATA', returnedData.data[0])
 			const filteredData = returnedData.data.filter(
@@ -66,6 +67,34 @@ const VismaUsers = () => {
 		})
 	}
 
+	//============== Lat Lng extractor for updated users ==========
+	const latLngFofEditUser = (query, userId, callback) => {
+		getGeoData(query).then(returnedData => {
+			console.log('CIA RETURNED DATA', returnedData.data)
+			console.log('CIA UPDATED USER DATA', updatedUser)
+			const filteredData = returnedData.data.filter(
+				data =>
+					data.region.toLowerCase() ===
+						updatedUser.address.city.toLowerCase() &&
+					data.number.toLowerCase() == updatedUser.address.houseNr.toLowerCase()
+			)
+			console.log('DATA PO  FILTRO', filteredData)
+			const newUser = {
+				fullName: updatedUser.fullName,
+				email: updatedUser.email,
+				lat: filteredData[0].latitude,
+				lng: filteredData[0].longitude,
+				address: {
+					city: updatedUser.address.city,
+					street: updatedUser.address.street,
+					houseNr: updatedUser.address.houseNr,
+					zip: updatedUser.address.zip,
+				},
+			}
+			callback(userId, newUser)
+		})
+	}
+	//============  DELETE USER ======================
 	const handelDeleteBtnClick = id => {
 		if (window.confirm('Do you realy want to delete user?')) {
 			userService.deleteUser(id).then(() => {
@@ -75,7 +104,6 @@ const VismaUsers = () => {
 	}
 
 	const handelOpenEditModal = id => {
-		console.log('Editmodal atsidaro ', id)
 		setUserId(id)
 		setOpenEditModal(true)
 	}
@@ -93,42 +121,30 @@ const VismaUsers = () => {
 				alert('Error On New User Save!', error)
 			})
 	}
-	//=========== UPDATE EXISTING USER Callback=========
-	const updateUser = (userId, updatedUser) => {
-		userService
-			.update(userId, updatedUser)
-			.then(returnedUser => {
-				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
-			})
-			.catch(error => {
-				alert('Error Alert On User Edit!', error)
-			})
-		setOpenEditModal(false)
-		alert('User updated.')
-	}
+
 	//======== SAVE NEW USER ================
 	const onNewUserSave = e => {
 		e.preventDefault()
 		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
-		latLng(query, updatedUser, saveUser)
+		latLngForNewUser(query, updatedUser, saveUser)
 	}
 	// ======== EDIT USER ===============
 	const onChangeSave = (e, userId) => {
 		e.preventDefault()
-		// const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
-		//latLng(query, updatedUser, userId)
-		console.log('newUpdatedUser', updatedUser)
-
-		userService
-			.update(userId, updatedUser)
-			.then(returnedUser => {
-				setUsers(users.map(user => (user.id !== userId ? user : returnedUser)))
-			})
-			.catch(error => {
-				alert('Error Alert On User Edit!', error)
-			})
-		setOpenEditModal(false)
-		alert('User updated.')
+		const query = `${updatedUser.address.houseNr} ${updatedUser.address.street} ${updatedUser.address.city}`
+		latLngFofEditUser(query, userId, (userid, newUser) =>
+			userService
+				.update(userId, newUser)
+				.then(returnedUser => {
+					setUsers(
+						users.map(user => (user.id !== userId ? user : returnedUser))
+					)
+					setOpenEditModal(false)
+				})
+				.catch(error => {
+					alert('Error Alert On User Edit!', error)
+				})
+		)
 	}
 
 	return (

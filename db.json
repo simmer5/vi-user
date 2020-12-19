@@ -79,19 +79,6 @@
       "id": 6
     },
     {
-      "fullName": "Mi St",
-      "email": "mist@mist.lt",
-      "lat": "",
-      "lng": "",
-      "address": {
-        "city": "Vilnius",
-        "street": "10",
-        "houseNr": "Žygio g",
-        "zip": "91992"
-      },
-      "id": 7
-    },
-    {
       "fullName": "LRV",
       "email": "lrv@lrv.lt",
       "lat": 54.688141,
@@ -103,6 +90,19 @@
         "zip": "01103"
       },
       "id": 8
+    },
+    {
+      "fullName": "Mi St",
+      "email": "mist@mist.lt",
+      "lat": 54.68611,
+      "lng": 25.285996,
+      "address": {
+        "city": "Vilnius",
+        "street": "Gedimino pr.",
+        "houseNr": "1",
+        "zip": "91992"
+      },
+      "id": 9
     }
   ]
 }
