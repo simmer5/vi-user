@@ -90,19 +90,6 @@
         "zip": "01103"
       },
       "id": 8
-    },
-    {
-      "fullName": "Mi St",
-      "email": "mist@mist.lt",
-      "lat": 54.68611,
-      "lng": 25.285996,
-      "address": {
-        "city": "Vilnius",
-        "street": "Gedimino pr.",
-        "houseNr": "1",
-        "zip": "91992"
-      },
-      "id": 9
     }
   ]
 }

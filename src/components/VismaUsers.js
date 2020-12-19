@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import userService from '../services/users'
@@ -10,7 +9,6 @@ import EditUserModal from './EditUserModal'
 import AddUserModal from './AddUserModal'
 
 const VismaUsers = () => {
-	// ====== is callback brancho=====
 	const [users, setUsers] = useState([])
 
 	const [updatedUser, setUpdatedUser] = useState({

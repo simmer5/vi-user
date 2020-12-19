@@ -69,8 +69,8 @@ const EditUserModal = ({
 							label='Street'
 							type='text'
 							fullWidth
-							value={updatedHouseNr}
-							onChange={onHouseNrChange}
+							value={updatedStreet}
+							onChange={onStreetChange}
 						/>
 						<TextField
 							name='houseNr'
@@ -80,8 +80,8 @@ const EditUserModal = ({
 							label='House number'
 							type='text'
 							fullWidth
-							value={updatedStreet}
-							onChange={onStreetChange}
+							value={updatedHouseNr}
+							onChange={onHouseNrChange}
 						/>
 						<TextField
 							name='zip'

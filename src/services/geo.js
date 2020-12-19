@@ -13,5 +13,3 @@ export const getGeoData = async query => {
 
 	return response.data
 }
-
-//export default geoData
